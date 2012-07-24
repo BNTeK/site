@@ -10,8 +10,6 @@
           <a class="brand" href="http://corpseeker.org/#">Corpseeker.org</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="http://corpseeker.org/#">Home</a></li>
-              <ul class="nav">
   <li class="dropdown">
     <a href="#"
           class="dropdown-toggle"
@@ -25,7 +23,7 @@
       <li ><a href="#"><i class="icon-user"></i> Профиль </a></li>
     </ul>
   </li>
-</ul>
+
             </ul>
           </div><!--/.nav-collapse -->
         </div>
