@@ -11,109 +11,126 @@ root {
 }
 
 body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        background-image: url(/images/bg_img.jpg);
-        background-size: 100% 100%;
-        background-attachment: fixed;
-		
-        
-        margin:0;
-        padding:0; 
-        
-    background-position: center center;
+    padding-top: 60px;/* 60px to make the container go all the way to the bottom of the topbar */
+    padding-bottom: 40px;
+    background-image: url(/images/bg_img.jpg);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    padding-bottom: 40px;	
+    background-position: center;
+    width: auto;
 }
-      * html #container{
-            height:auto !important;
-                min-height:100%;
-                height:100%;}
-      .reklama {
-	border: 10px solid rgba(90,90,90,.4);
-        height: auto;
-        width: 75%;
-        max-height: 125px;
-        max-width: 550px;
-        margin-top: 50px;
-        margin-left:auto;
-        margin-right:auto;
-        }
-        .content{
-        
-        width: auto;
-        max-width: 960px;
-        margin: 0 auto;
-        min-height: 100%;
-        
-        
-        
-        
-        }
-        .footer {
-           
-            position: relative;
-            height:40px;
-            margin-top:-40px;
-            margin-bottom:0px;
-            width: 75%;
-            max-width:960px;
-            background-color: rgba(0,0,0,.9);
-            border: 10px solid rgba(0,0,0,.5);
-            margin-left: auto;
-            margin-right: auto;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            margin: -50px auto 0;
-            color: #999;
+* html #container{
+    height:auto !important;
+    min-height:100%;
+    height:100%;}
+.reklama {
+    border: 10px solid rgba(90,90,90,.4);
+    height: auto;
+    width: 75%;
+    max-height: 125px;
+    max-width: 550px;
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 60px !important;
+
 }
-         html, body {
-            margin: 0;
-            padding: 0;
-            width: auto;
-            height: 100%;
-         }
-         
-         .empty {
-            height: 50px;
-         }
-         
-         .dropdown-menu {
-             background-color: rgba(0,0,0,.8); 
-         }
-         
-         .dropdown-menu a{
-             color: #fff
-         }
-         
-         .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover{
-             background-color: rgba(80,80,80,.8)
-         }
-         .form{
-             border: solid 10px rgba(0,0,0,.5);
-             background-color: rgba(0,0,0,.5);
-             width: 250px;
-             margin-right: auto;
-             margin-left: auto;
-             margin-top: 50px;
-             
-              
-         }
-         .row{
-             margin-left: auto;
-             margin-right: auto;
-             margin: 10px;
-             margin-bottom: -10px;
-             text-align: center;
-         }
-         .btn-inverse{
-             width: 96px !important;
-             height: 32px !important;
-             font-size: 16px;
+.content{
+
+    width: auto;
+    max-width: 960px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto;
+    margin-bottom: 10PX;
+
+
+
+
 }
-             
-        .mycaption
-        {
-            margin: 10px;
-            text-align: center;
-            font-size: 18px;
-            
+.footer {
+
+    position: relative;
+    height:40px;
+    margin-top:-40px;
+    margin-bottom:0px;
+    width: 75%;
+    max-width:960px;
+    background-color: rgba(0,0,0,.9);
+    border: 10px solid rgba(0,0,0,.5);
+    margin-left: auto;
+    margin-right: auto;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: -50px auto 0;
+    color: #999;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
+}
+
+.empty {
+    height: 50px;
+}
+
+.dropdown-menu {
+    background-color: rgba(0,0,0,.8); 
+}
+
+.dropdown-menu a{
+    color: #fff
+}
+
+.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover{
+    background-color: rgba(80,80,80,.8)
+}
+.form{
+    text-align: center !important;
+    border: solid 10px rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.8);
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+
+
+}
+.row{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin: 10px;
+    margin-bottom: -10px;
+    text-align: center;
+}
+.btn-inverse{
+    width: 96px !important;
+    height: 32px !important;
+    font-size: 16px;
+    margin-top: 10px;
+
+}
+
+.mycaption
+{
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
     color: #999 ;
+}
+
+
+.alert {
+padding: 8px 35px 8px 14px;
+margin-bottom: 18px;
+color: #810000;
+text-shadow: none;
+background-color: inherit;
+border: none;
+-webkit-border-radius: inherit;
+-moz-border-radius: inherit;
+border-radius: inherit;
 }

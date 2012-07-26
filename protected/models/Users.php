@@ -41,11 +41,11 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, corp_id', 'numerical', 'integerOnly'=>true),
-			array('name, race, dob, sp', 'length', 'max'=>50),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, corp_id, race, dob, sp', 'safe', 'on'=>'search'),
+			array('eve_id', 'numerical', 'integerOnly'=>true, 'message' => 'Поле "eve_id" может содержать только целые числа'),
+                        array('eve_id', 'length', 'is'=>6, 'message' => 'Поле "eve_id" должно иметь длинну в 6 символов'), 
+                        array('eve_id', 'required', 'message' => 'Поле "eve_id" незаполнено'),
+			array('eve_key','match','pattern' => '[^a-z0-9]', 'message' => 'Поле "eve_key" может содержать только числа от 0 до 9 и буквы от A до Z'),
+			
 		);
 	}
 
@@ -93,4 +93,25 @@ class Users extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        protected function getDataFromApi($eve_id,$eve_key){
+            $api = new Eveapi();
+            $charID = $api->apikeyinfo($eve_id, $eve_key);
+            if(!$charID)
+            {
+                $charID = $charID->characterID;
+                if(!$charSheet = $api->character_sheet($eve_id, $eve_key, $charID))
+                {
+                    $user=Users::model()->find('where',array('id' => $charSheet->CharacterID));
+                    if($user===NULL)
+                    {
+                        $model = new Users;
+                        $model->id = $charSheet->ChatacterID;
+                        
+                        
+                    }
+                }
+                
+            }
+        }
 }

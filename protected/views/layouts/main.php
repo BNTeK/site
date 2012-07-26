@@ -7,10 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
     
     <link href="/css/mycss.css" rel="stylesheet">
+    
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 
     
 
@@ -19,9 +23,7 @@
 
   <body>
    
-          <div class="reklama">
-              <img src="/images/9.jpg" alt="Альтернативный текст">
-          </div> <!-- /reklama -->
+          
     <div class="content">
 
       <?php echo $content?>

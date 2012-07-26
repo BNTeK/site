@@ -5,7 +5,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
         <p class="mycaption">Вход в систему</p>
 	<div class="row">
 		<?php echo $form->textField($model,'eve_id',array('placeholder'=>'EVE ID')); ?>
@@ -17,9 +17,11 @@
 
 	<div class="row">
 		<?php echo CHtml::submitButton('Войти', array('class'=>'btn-inverse')); ?>
-            <p><a href="#">Вопросы?</a></p>
+            <p><a href="javascript://" onclick="$('#hideCont1').slideToggle('normal'); $(this).toggleClass('show'); return false;">Вопросы?</a></p>
 	</div>
     
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<?php $this->renderPartial('../modal/loginHelp');?>
