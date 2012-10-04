@@ -13,7 +13,7 @@ root {
 body {
     padding-top: 60px;/* 60px to make the container go all the way to the bottom of the topbar */
     padding-bottom: 40px;
-    background-image: url(/images/bg_img.jpg);
+    background-image: url(../images/bg_img.jpg);
     background-size: 100% 100%;
     background-attachment: fixed;
     padding-bottom: 40px;	

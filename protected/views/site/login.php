@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::submitButton('Войти', array('class'=>'btn-inverse')); ?>
+		<?php echo CHtml::submitButton('Войти', array('class'=>'btn-inverse', 'name' => 'submitbtn')); ?>
             <p><a href="javascript://" onclick="$('#hideCont1').slideToggle('normal'); $(this).toggleClass('show'); return false;">Вопросы?</a></p>
 	</div>
     
@@ -24,4 +24,4 @@
 
 </div><!-- form -->
 
-<?php $this->renderPartial('../modal/loginHelp');?>
+<?php $this->renderPartial('/modal/loginHelp');?>

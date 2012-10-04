@@ -1,7 +1,6 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+
 
 /**
  * Eve API class
@@ -34,8 +33,8 @@ class Eveapi {
     }
 
     function character_sheet($keyID, $vCode, $characterID) {
-        if (!isset($xml->error)) {
             $xml = simplexml_load_file("http://api.eveonline.com/char/CharacterSheet.xml.aspx?keyID=$keyID&vCode=$vCode&CharacterID=$characterID");
+           if (!isset($xml->error)) {  
             $sum = 0;
             foreach ($xml->result->rowset->row as $row) {
                 $sum += $row['skillpoints'];
@@ -43,12 +42,12 @@ class Eveapi {
 
             $race = $xml->result->race;
             $data = array('characterID' => $xml->result->characterID,
-                'characterName' => $xml->result->name,
+                'characterName' => str_replace (' ','_',$xml->result->name),
                 'corporationID' => $xml->result->corporationID,
-                'corporationName' => $xml->result->corporationName,
+                'corporationName' => str_replace (' ','_',$xml->result->corporationName),
                 'user_race' => "$race",
-                'DoB' => $xml->result->DoB,
-                'allianceName' => $xml->result->allianceName,
+                'DoB' => str_replace (' ','_',$xml->result->DoB),
+                'allianceName' => str_replace (' ','_',$xml->result->allianceName),
                 'allianceID' => $xml->result->allianceID,
                 'SP' => $sum);
 
@@ -57,11 +56,10 @@ class Eveapi {
             }
 
             return $data;
-        } else {
-            return FALSE;
+        
         }
+    return FALSE;
     }
-
     function corp_sheet($keyID, $vCode) {
         $xml = simplexml_load_file("http://api.eveonline.com/corp/CorporationSheet.xml.aspx?keyID=$keyID&vCode=$vCode");
 

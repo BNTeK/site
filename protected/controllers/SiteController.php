@@ -1,7 +1,6 @@
 <?php
 
 class SiteController extends Controller {
-   
 
     /**
      * Declares class-based actions.
@@ -46,11 +45,10 @@ class SiteController extends Controller {
     public function actionLogin() {
         $model = new Users('login');
 
-       if (isset($_POST['Users'])) {
+        if (isset($_POST['Users'])) {
             $model->attributes = $_POST['Users'];
             if ($model->validate()) {
-                // form inputs are valid, do something here
-                return;
+                print_r($model->getDataFromApi($model->eve_id, $model->eve_key));
             }
         }
         $this->render('login', array('model' => $model));

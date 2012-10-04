@@ -44,8 +44,8 @@ class Users extends CActiveRecord
 			array('eve_id', 'numerical', 'integerOnly'=>true, 'message' => 'Поле "eve_id" может содержать только целые числа'),
                         array('eve_id', 'length', 'is'=>6, 'message' => 'Поле "eve_id" должно иметь длинну в 6 символов'), 
                         array('eve_id', 'required', 'message' => 'Поле "eve_id" незаполнено'),
-			array('eve_key','match','pattern' => '[^a-z0-9]', 'message' => 'Поле "eve_key" может содержать только числа от 0 до 9 и буквы от A до Z'),
-			
+			array('eve_key','match','pattern' => '/^[a-zA-Z0-9]+$/', 'message' => 'Поле "eve_key" может содержать только числа от 0 до 9 и буквы от A до Z'),
+			array('eve_key', 'required', 'message' => 'Поле "eve_key" незаполнено')
 		);
 	}
 
@@ -57,7 +57,8 @@ class Users extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		);
+            'corp' => array(self::BELONGS_TO, 'Corps', 'Corp_id'),
+        );
 	}
 
 	/**
@@ -94,24 +95,51 @@ class Users extends CActiveRecord
 		));
 	}
         
-        protected function getDataFromApi($eve_id,$eve_key){
+        public function getDataFromApi($eve_id,$eve_key){
             $api = new Eveapi();
+            $corp = new Corps();
+            $ally = new Ally();
             $charID = $api->apikeyinfo($eve_id, $eve_key);
-            if(!$charID)
+            if($charID!==FALSE)
             {
-                $charID = $charID->characterID;
-                if(!$charSheet = $api->character_sheet($eve_id, $eve_key, $charID))
+                $charID = $charID['characterID'];
+                $charSheet = $api->character_sheet($eve_id, $eve_key, $charID);
+                if($charSheet !== FALSE)
                 {
-                    $user=Users::model()->find('where',array('id' => $charSheet->CharacterID));
+                    $user = Users::model()->findByPk($charSheet['characterID']);
                     if($user===NULL)
                     {
-                        $model = new Users;
-                        $model->id = $charSheet->ChatacterID;
+                        $this->id = $charSheet['characterID'];
+                        $this->name = $charSheet['characterName'];
+                        if(!Ally::model()->findByPk($charSheet['allianceID']))
+                        {
+                            $ally->id = $charSheet['allianceID'];
+                            $ally->name = $charSheet['allianceName'];
+                            
+                        }
+                        if(!Corps::model()->findByPk($charSheet['corporationID']))
+                        {
+                            $corp->id = $charSheet['corporationID'];
+                            $corp->name = $charSheet['corporationName'];
+                            $corp->ally_id = $charSheet['allianceID'];
+                            
+                        }
+                        $this->corp_id = $charSheet['corporationID'];
+                        $this->dob = $charSheet['DoB'];
+                        $this->race = $charSheet['user_race'];
+                        $this->sp = $charSheet['SP'];
+                        $ally->save(false);
+                        $corp->save(false);
+                        $this->save(false);
                         
+                        
+                        return '1';
                         
                     }
+                    return '2';
                 }
-                
+                return '3';
             }
+            return $charID;
         }
 }
